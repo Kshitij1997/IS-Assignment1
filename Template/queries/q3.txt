@@ -1,0 +1,12 @@
+SELECT  ?topic_label ?topic_link
+WHERE
+  { ?subject_url  rdf:type     isd:Subject ;
+              foaf:name        "FLIT"^^xsd:string .
+    ?course_url  rdf:type      isd:Course ;
+              isdp:Number      "314"^^xsd:string .
+    ?topic_url  rdf:type       isd:Topic ;
+              dc:subject       ?subject_url ;
+              schema:isPartOf  ?course_url ;
+              rdfs:label       ?topic_label ;
+              owl:sameAs       ?topic_link .
+  }

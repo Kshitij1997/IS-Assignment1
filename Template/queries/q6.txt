@@ -1,0 +1,16 @@
+SELECT ?topic ?topic_label ?topic_url
+WHERE
+  { ?student_url  rdf:type     isd:Student ;
+dc:identifier 11568211 ;
+              isdp:has         ?course_information .
+    ?course_information
+              isdp:hasGrade    ?grade ;
+              dc:subject       ?subject_url ;
+              schema:isPartOf  ?course_url .
+    FILTER ( ?grade != "F"^^xsd:string )
+    ?topic  rdf:type         isd:Topic ;
+            rdfs:label       ?topic_label ;
+            dc:subject       ?subject_url ;
+            schema:isPartOf  ?course_url ;
+            owl:sameAs       ?topic_url
+  }

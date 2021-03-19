@@ -1,0 +1,18 @@
+SELECT ?subject ?course_number ?course_name ?term ?grade
+            WHERE
+            {
+                ?student_url a isd:Student ;
+                        dc:identifier 10329442 ;
+                        isdp:has         ?course_information .
+                ?course_information
+                          isdp:hasGrade    ?grade ;
+                          isdp:inTerm      ?term ;
+                          dc:subject       ?subject_url ;
+                          schema:isPartOf  ?course_url .
+                ?course_url a isd:Course ;
+                        isdp:Number ?course_number ;
+                        foaf:name ?course_name .
+                ?subject_url a isd:Subject ;
+                        foaf:name ?subject .
+
+            }

@@ -1,0 +1,14 @@
+SELECT  ?student_url
+WHERE
+  { ?topic_url  rdf:type       isd:Topic ;
+              rdfs:label       "data mining"@en ;
+              dc:subject       ?subject_url ;
+              schema:isPartOf  ?course_url .
+    ?student_url  rdf:type     isd:Student ;
+              isdp:has         ?course_information .
+    ?course_information
+              isdp:hasGrade    ?grade ;
+              dc:subject       ?subject_url ;
+              schema:isPartOf  ?course_url
+    FILTER ( ?grade != "F"^^xsd:string )
+  }

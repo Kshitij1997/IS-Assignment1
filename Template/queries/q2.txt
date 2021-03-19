@@ -1,0 +1,16 @@
+SELECT  ?total ?count_students ?count_courses ?count_topics
+WHERE
+  { { SELECT  (COUNT(?students) AS ?count_students)
+      WHERE
+        { ?students  rdf:type  isd:Student }
+    }
+    { SELECT  (COUNT(?courses) AS ?count_courses)
+      WHERE
+        { ?courses  rdf:type  isd:Course }
+    }
+    { SELECT  (COUNT(?topics) AS ?count_topics)
+      WHERE
+        { ?topics  rdf:type  isd:Topic }
+    }
+    BIND(( ( ?count_students + ?count_courses ) + ?count_topics ) AS ?total)
+  }

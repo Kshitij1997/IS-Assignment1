@@ -1,0 +1,13 @@
+SELECT ?subject ?course_number ?course_name
+            WHERE
+            {
+                ?topic_url a isd:Topic ;
+                        rdfs:label "AI"@en ;
+                        dc:subject ?subject_url ;
+                        schema:isPartOf ?course_url .
+                ?course_url a isd:Course ;
+                        isdp:Number ?course_number ;
+                        foaf:name ?course_name .
+                ?subject_url a isd:Subject ;
+                        foaf:name ?subject .
+            }

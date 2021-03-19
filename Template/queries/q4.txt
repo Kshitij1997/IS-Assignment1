@@ -1,0 +1,12 @@
+SELECT  ?subject ?course ?term ?grade
+WHERE
+  { ?student_url  rdf:type     isd:Student ;
+              foaf:familyName  "Dandy"^^xsd:string ;
+              foaf:givenName   "Martin"^^xsd:string ;
+              isdp:has         ?course_information .
+    ?course_information
+              isdp:hasGrade    ?grade ;
+              isdp:inTerm      ?term ;
+              dc:subject       ?subject ;
+              schema:isPartOf  ?course .
+  }
