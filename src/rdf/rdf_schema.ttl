@@ -1,0 +1,99 @@
+@prefix isdp: <http://intelligent_system.io/data/property/> .
+@prefix isd:  <http://intelligent_system.io/data/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml:  <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dbo:  <http://dbpedia.org/ontology/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc:   <http://purl.org/dc/elements/1.1/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+dbo:University
+    a               rdfs:Class ;
+    rdfs:subClassOf foaf:Organization .
+
+isd:Subject
+    a               rdfs:Class ;
+    isdp:hasCourse  [ rdf:Property isd:Course ;
+                      rdfs:label   "Has course"@en ;
+                      rdfs:comment "The Subject has the course."@en ] ;
+    isdp:enrolledBy isd:Student ;
+    rdfs:label      "Subject"@en ;
+    rdfs:comment    "Subject is a program annotation taught at the University."@en .
+
+isdp:hasCourse
+    rdfs:label   "Has course"@en ;
+    rdfs:comment "The Subject has the course."@en .
+
+isdp:enrolledBy
+    rdfs:label   "Enrolled by"@en ;
+    rdfs:comment "The Subject is enrolled by the student."@en .
+
+isd:Course
+    a                   rdfs:Class ;
+    isdp:isRegisteredBy isd:Student ;
+    isdp:belongsTo      isd:Subject ;
+    isdp:hasTopic       skos:Concept ;
+    rdfs:label          "Course"@en ;
+    rdfs:comment        "Course is a part of subject."@en .
+
+isdp:isRegisteredBy
+    rdfs:label   "Registered by"@en ;
+    rdfs:comment "Course is registered by the student."@en .
+
+isdp:belongsTo
+    rdfs:label   "Belongs to"@en ;
+    rdfs:comment "Course belongs to the subject."@en .
+
+isdp:hasTopic
+    rdfs:label   "Has topic"@en ;
+    rdfs:comment "Course has a topic."@en .
+
+
+isd:Student
+    a                 rdfs:Class ;
+    isdp:registeredIn isd:Course ;
+    isdp:enrolledIn   isd:Subject ;
+    dc:identifier     xsd:int ;
+    foaf:familyName   xsd:string ;
+    foaf:givenName    xsd:string ;
+    foaf:mbox         xsd:string ;
+    rdfs:label        "Student"@en ;
+    rdfs:comment      "Student studies at Concordia University."@en .
+
+isdp:registeredIn
+    rdfs:label   "Registered in"@en ;
+    rdfs:comment "Student registered in the course."@en .
+
+isdp:enrolledIn
+    rdfs:label   "Enrolled in"@en ;
+    rdfs:comment "Student enrolled in the subject."@en .
+
+dc:identifier
+    rdfs:label "Student ID"@en .
+
+foaf:familyName
+    rdfs:label   "Family name"@en ;
+    rdfs:comment "Family name or last name of the student."@en .
+
+foaf:givenName
+    rdfs:label   "Given name"@en ;
+    rdfs:comment "Given name or first name of the student."@en .
+
+foaf:mbox
+    rdfs:label   "Email address"@en ;
+    rdfs:comment "Email address of the student."@en .
+
+skos:Concept
+    skos:inScheme isd:Course ;
+    dc:title      xsd:string ;
+    rdfs:domain   isd:Course ;
+    rdfs:range    isd:Subject ;
+    owl:sameAs    xsd:string ;
+    rdfs:label    "Topic"@en ;
+    rdfs:comment  "A property describing a topic in a course."@en .
+
+skos:inScheme
+    rdfs:comment "Topic included in the course."@en .
