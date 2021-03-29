@@ -60,7 +60,7 @@ def create_base_graph():
     # graph.add((ISD.Topic, RDFS.range, Concordia_University))
 
 
-def get_unique_subjects():
+def     get_unique_subjects():
     courses_dataframe = pandas.read_csv('datasets/courses.csv')
     return courses_dataframe['Course Subject'].drop_duplicates().values.tolist()
 

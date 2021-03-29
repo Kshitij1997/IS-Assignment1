@@ -44,7 +44,7 @@ def create_students():
     students_dict = {'Student ID': student_ids_list, 'Given Name': student_first_names_list,
                      'Family Name': student_last_names_list, 'Email': student_emails_list}
     students_dataframe = pandas.DataFrame(students_dict)
-    students_dataframe.to_csv('datasets/students.csv', index=False)
+    students_dataframe.to_csv('Dataset/students.csv', index=False)
 
 
 create_students()

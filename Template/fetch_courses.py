@@ -24,7 +24,7 @@ import pandas
 # def save_courses(courses_list):
 #     courses_dataframe = pandas.DataFrame(courses_list)
 #     courses_dataframe.drop(['career', 'classUnit', 'prerequisites', 'crosslisted'], axis=1, inplace=True)
-#     courses_dataframe.to_csv(r'datasets\courses.csv', header=True, index=False)
+#     courses_dataframe.to_csv(r'Dataset\courses.csv', header=True, index=False)
 
 
 def fetch_courses():
@@ -44,7 +44,7 @@ def fetch_courses():
     courses_dataframe.rename(
         columns={'Subject': 'Course Subject', 'Catalog': 'Course Number', 'Long Title': 'Course Name',
                  'Descr': 'Course Description'}, inplace=True)
-    courses_dataframe.to_csv(r'datasets\courses.csv', header=True, index=False)
+    courses_dataframe.to_csv(r'Dataset\courses.csv', header=True, index=False)
 
 
 if __name__ == "__main__":
