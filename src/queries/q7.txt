@@ -1,0 +1,6 @@
+prefix sch: <http://example.org/schema#/>
+
+SELECT ?description
+WHERE {
+ sch:MECH6741 sch:courseDesc ?description.
+}

@@ -1,0 +1,9 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix sch: <http://example.org/schema#/>
+
+SELECT ?topic
+WHERE {
+ ?lecture sch:lectNumber "1"^^xsd:int.
+ ?lecture sch:forCourse sch:COMP6741.
+ ?topic sch:coveredInLecture ?lecture.
+}ORDER BY(?topic)

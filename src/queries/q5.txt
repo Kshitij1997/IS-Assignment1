@@ -1,0 +1,7 @@
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix sch: <http://example.org/schema#/>
+
+SELECT ?link
+WHERE {
+ sch:COMP6741 rdfs:seeAlso ?link.
+}

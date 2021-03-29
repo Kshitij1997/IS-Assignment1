@@ -1,0 +1,12 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix sch: <http://example.org/schema#/>
+
+SELECT ?content ?property ?value
+WHERE {
+ ?lecture sch:lectNumber "1"^^xsd:int.
+ ?lecture sch:forCourse sch:COMP6741.
+ ?lecture sch:hasContent ?content.
+ ?content ?property ?value.
+ FILTER(?property!=rdf:type)
+}

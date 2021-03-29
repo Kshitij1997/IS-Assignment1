@@ -1,0 +1,6 @@
+prefix sch: <http://example.org/schema#/>
+
+SELECT ?topic
+WHERE {
+ ?topic sch:coveredInCourse sch:COMP6741.
+}ORDER BY(?topic)

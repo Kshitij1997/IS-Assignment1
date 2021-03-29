@@ -1,0 +1,246 @@
+@prefix sch:  <http://example.org/schema#/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml:  <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dbo:  <http://dbpedia.org/ontology/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+#@prefix dc:   <http://purl.org/dc/elements/1.1/> .
+
+sch:uniName
+	a    rdf:Property ;
+    rdfs:domain sch:University ;
+    rdfs:range xsd:string ;
+	rdfs:label "Name"@en ;
+    rdfs:comment "Name of a university."@en .
+	
+sch:University
+    a     rdfs:Class ;
+	sch:uniName xsd:string ;
+	rdfs:label "University"@en ;
+    rdfs:comment "University."@en.
+
+sch:subject
+    a    rdf:Property ;
+    rdfs:domain sch:Course ;
+    rdfs:range xsd:string
+	rdfs:label "Subject"@en ;
+    rdfs:comment "Relationship showing subject for a course."@en .
+
+sch:courseDesc
+    a    rdf:Property ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "Description for a course."@en ;
+    rdfs:domain sch:Course ;
+    rdfs:range xsd:string .
+
+sch:outline
+    a    rdf:Property ;
+    rdfs:domain sch:Course ;
+    rdfs:range rdf:resource ;
+	rdfs:label "Course Outline"@en ;
+    rdfs:comment "Outline for a course."@en ;.
+	
+sch:number
+	a    rdf:Property ;
+    rdfs:domain sch:Course ;
+    rdfs:range xsd:int ;
+	rdfs:label "Course Number"@en ;
+    rdfs:comment "Number for a course."@en .
+	
+sch:courseName
+	a    rdf:Property ;
+    rdfs:domain sch:Course ;
+    rdfs:range xsd:string ;
+	rdfs:label "Name"@en ;
+    rdfs:comment "Name of course."@en .
+	
+sch:Course
+    a               rdfs:Class ;
+	sch:courseName	xsd:string;
+    sch:subject		xsd:string ;
+    sch:number      xsd:int ;
+    sch:courseDesc	xsd:string ;
+    sch:outline		rdf:resource ;
+	rdfs:label      "Course"@en ;
+    rdfs:comment    "Course."@en .
+
+sch:lectNumber
+	a    rdf:Property ;
+    rdfs:domain sch:lecture ;
+    rdfs:range xsd:int ;
+	rdfs:label "Lecture Number"@en ;
+    rdfs:comment "Lecture Number."@en ;.
+
+sch:lectName
+	a    rdf:Property ;
+    rdfs:domain sch:lecture ;
+    rdfs:range xsd:string ;
+	rdfs:label "Lecture Name"@en ;
+    rdfs:comment "Lecture Name."@en .
+
+sch:hasContent
+	a    rdf:Property ;
+    rdfs:domain sch:lecture ;
+    rdfs:range sch:lectContent;
+	rdfs:label "Lecture Content"@en ;
+    rdfs:comment "Relationship showing lecture has lecture content."@en .
+	
+sch:Content
+	a    rdf:Property ;
+    rdfs:domain sch:lab ;
+    rdfs:range sch:labContent;
+	rdfs:label "LabContent"@en ;
+    rdfs:comment "Relationship showing lab has lab content."@en .
+	
+sch:hasSlides
+	a    rdf:Property ;
+    rdfs:domain sch:lectContent ;
+    rdfs:range sch:slide;
+	rdfs:label "Has Slides"@en ;
+    rdfs:comment "Relationship showing lecture content has slides."@en .
+	
+sch:Slides
+	a    rdf:Property ;
+    rdfs:domain sch:labContent ;
+    rdfs:range sch:slide;
+	rdfs:label "Slides"@en ;
+    rdfs:comment "Relationship showing lab content has slides."@en.
+	
+sch:hasWorksheets
+	a    rdf:Property ;
+    rdfs:domain sch:lectContent ;
+    rdfs:range sch:worksheet;
+	rdfs:label "Has Worksheets"@en ;
+    rdfs:comment "Relationship showing lecture content has worksheets."@en .
+	
+sch:Worksheets
+	a    rdf:Property ;
+    rdfs:domain sch:labContent ;
+    rdfs:range sch:worksheet;
+	rdfs:label "Worksheets"@en ;
+    rdfs:comment "Relationship showing lab content has worksheets."@en .
+
+sch:hasReadings
+	a    rdf:Property ;
+    rdfs:domain sch:lectContent ;
+    rdfs:range sch:reading;
+	rdfs:label "Has Readings"@en ;
+    rdfs:comment "Relationship showing lecture content has readings."@en .
+
+sch:Readings
+	a    rdf:Property ;
+    rdfs:domain sch:labContent ;
+    rdfs:range sch:reading;
+	rdfs:label "Readings"@en ;
+    rdfs:comment "Relationship showing lab content has readings."@en .
+
+sch:hasOtherMaterial
+	a    rdf:Property ;
+    rdfs:domain sch:lectContent ;
+    rdfs:range sch:other;
+	rdfs:label "Has Other Materials"@en ;
+    rdfs:comment "Relationship showing lecture content has other materials."@en .
+
+sch:OtherMaterial
+	a    rdf:Property ;
+    rdfs:domain sch:labContent ;
+    rdfs:range sch:other;
+	rdfs:label "Other Materials"@en ;
+    rdfs:comment "Relationship showing lab content has other materials."@en .
+	
+sch:forCourse
+	a    rdf:Property ;
+    rdfs:domain sch:lecture ;
+    rdfs:range sch:course;
+	rdfs:label "For Course"@en ;
+    rdfs:comment "Relationship showing lecture content for a course."@en .
+	
+	
+sch:lecture
+    a               rdfs:Class ;
+	sch:forCourse 	sch:course;
+	sch:lectNumber	xsd:int ;
+	sch:lectName	xsd:string;
+	sch:hasContent	sch:lectContent;
+    rdfs:label      "Lecture"@en ;
+    rdfs:comment    "Lecture."@en .
+
+sch:slide
+	a               rdfs:Class ;
+	rdfs:label      "Slide"@en ;
+    rdfs:comment    "Slide."@en .
+	
+sch:worksheet
+	a               rdfs:Class ;
+	rdfs:label      "Worksheet"@en ;
+    rdfs:comment    "Worksheet."@en .
+	
+sch:reading
+	a               rdfs:Class ;
+	rdfs:label      "Reading"@en ;
+    rdfs:comment    "Reading."@en .
+	
+sch:other
+	a               rdfs:Class ;
+	rdfs:label      "Other Materials"@en ;
+    rdfs:comment    "Other Materials."@en .
+	
+sch:lectContent
+	a               rdfs:Class ;
+	sch:hasSlides	sch:slide;
+	sch:hasWorksheets sch:worksheet;
+	sch:hasReadings	sch:reading;
+	sch:hasOtherMaterial	sch:other;
+	rdfs:label      "Lecture Content"@en ;
+    rdfs:comment    "Lecture Content."@en .
+	
+sch:labContent
+	a               rdfs:Class ;
+	sch:Slides	sch:slide;
+	sch:Worksheets sch:worksheet;
+	sch:Readings	sch:reading;
+	sch:OtherMaterial	sch:other;
+	rdfs:label      "Lab Content"@en ;
+    rdfs:comment    "Lab Content."@en .
+	
+
+sch:lab
+	a               rdfs:Class ;
+	sch:labNumber	xsd:int ;
+	sch:labName	xsd:string;
+	sch:Content	sch:labContent;
+    rdfs:label      "Lab"@en ;
+	rdfs:subClassOf sch:lecture;
+    rdfs:comment    "Lab."@en .
+
+sch:coveredInCourse
+	a    rdf:Property ;
+    rdfs:domain sch:Topic ;
+    rdfs:range sch:Course ;
+	rdfs:label "Covered In"@en ;
+    rdfs:comment "Relationship showing topic covered in a course."@en .
+	
+sch:coveredInLecture
+	a    rdf:Property ;
+    rdfs:domain sch:Topic ;
+    rdfs:range sch:lecture ;
+	rdfs:label "Covered In"@en ;
+    rdfs:comment "Relationship showing topic covered in a lecture."@en .
+
+sch:topicName
+	a    rdf:Property ;
+    rdfs:domain sch:Topic ;
+    rdfs:range xsd:string ;
+	rdfs:label "Name"@en ;
+    rdfs:comment "Name of topic."@en.
+	
+sch:Topic
+    a          rdfs:Class ;
+	sch:topicName xsd:string ;
+	sch:coveredInCourse sch:Course;
+	sch:coveredInLecture sch:lecture;
+    rdfs:label     "Topics"@en ;
+    rdfs:comment   "Topics for a lecture."@en .
+     

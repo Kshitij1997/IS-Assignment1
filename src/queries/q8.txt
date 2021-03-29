@@ -1,0 +1,6 @@
+prefix sch: <http://example.org/schema#/>
+
+SELECT ?outline
+WHERE {
+ sch:COMP6741 sch:outline ?outline.
+}

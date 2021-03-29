@@ -1,0 +1,8 @@
+prefix sch: <http://example.org/schema#/>
+
+SELECT ?name
+WHERE {
+ ?course sch:number "6741".
+ ?course sch:subject "COMP".
+ ?course sch:courseName ?name.
+}

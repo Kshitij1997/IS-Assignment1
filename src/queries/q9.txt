@@ -1,0 +1,10 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix sch: <http://example.org/schema#/>
+
+SELECT ?slides
+WHERE {
+ ?lecture sch:lectNumber "1"^^xsd:int.
+ ?lecture sch:forCourse sch:COMP6741.
+ ?lecture sch:hasContent ?content.
+ ?content sch:hasSlides ?slides. 
+}
